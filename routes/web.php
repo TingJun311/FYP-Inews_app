@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [news::class, 'fetchAll']);
+Route::get('/', [news::class, 'getEverything']);
+
+// Route::get('/test', [news::class, 'get'])

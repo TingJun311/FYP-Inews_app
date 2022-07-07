@@ -1,16 +1,17 @@
-<h1>testing fetch</h1>
-{{-- {{ $newsData->articles }} --}}
-@unless (count((array)$newsData) == 0)
-    @foreach ($newsData as $news)
-        <div>
-            <h1>{{ $news->title }}</h1>
-            <p>{{ $news->author }}</p>
-            <h5>{{ $news->description }}</h5>
-            <img src="{{ $news->urlToImage }}" alt="">
-            <a href="{{ $news->url }}">{{ $news->url }}</a>
-        </div>
-    @endforeach
-@else
-    <p>No data</p>
-@endunless
-{{-- {{ dd($newsData) }} --}}
+
+<x-layout>
+    @unless (count((array)$newsData) == 0)
+        @foreach ($newsData['articles'] as $news)
+            <div class="card bg-dark text-white">
+                <img src="{{ $news['urlToImage'] }}" class="card-img opacity-25" alt="">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ $news['title'] }}</h5>
+                    <p class="card-text">{{ $news['description'] }}</p>
+                    <p class="card-text">{{ $news['author'] }}</p>
+                </div>
+            </div>
+        @endforeach
+    @else
+        <p>No data</p>
+    @endunless
+</x-layout>
