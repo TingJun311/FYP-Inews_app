@@ -87,39 +87,43 @@
         {{ $slot }}
     </main>
     <br>
-    <footer class="bg-primary text-white text-center text-lg-start">
+    <footer class="text-white text-center text-lg-start" style="background: #2f3e46">
     <!-- Grid container -->
         <div class="container p-4">
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Footer Content</h5>
+                    <h5 class="text-uppercase"><strong>Explore the Inews</strong></h5>
 
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                        voluptatem veniam, est atque cumque eum delectus sint!
+                        Inews is an operational business division of the world Broadcasting Corporation responsible for the gathering and broadcasting of news and current affairs in around the world. 
                     </p>
                 </div>
                 <!--Grid column-->
 
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Links</h5>
+                    <h5 class="text-uppercase">Category</h5>
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Link 1</a>
+                            <a href="/category/business" class="text-white">buiness</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 2</a>
+                            <a href="/category/entertainment" class="text-white">entertainment</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 3</a>
+                            <a href="/category/health" class="text-white">health</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">Link 4</a>
+                            <a href="/category/science" class="text-white">science</a>
+                        </li>
+                        <li>
+                            <a href="/category/sports" class="text-white">sports</a>
+                        </li>
+                        <li>
+                            <a href="/category/technology" class="text-white">technology</a>
                         </li>
                     </ul>
                 </div>

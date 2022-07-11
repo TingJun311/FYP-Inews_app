@@ -28,7 +28,7 @@ class news extends Controller
 
     public function getByCategory($category) {
 
-        $response = Http::get('https://newsapi.org/v2/top-headlines?apiKey=' . env('NEWS_API_KEY') .'&category=' . $category . '&country=my');
+        $response = Http::get('https://newsapi.org/v2/top-headlines?apiKey=' . env('NEWS_API_KEY') .'&category=' . $category . '&country=my&pageSize=100');
         $newsByCategory = $response->json();
 
         if ($response) {
