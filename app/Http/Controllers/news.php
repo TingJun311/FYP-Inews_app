@@ -10,16 +10,15 @@ use Stevebauman\Location\Facades\Location; // Composer packages to get client ip
 
 class news extends Controller
 {
-    public function getEverything() {
-        // Get all from Top headlines
-        $response = Http::get('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=' . env('NEWS_API_KEY') . '&language=en');
+    public function getTopHeadlines() {
+        // Get all from Top headlines will get user ip address dynamically
+        $response = Http::get('https://newsapi.org/v2/top-headlines?country=my&apiKey=' . env('NEWS_API_KEY'));
         $news = $response->json();
         // $data = Location::get(request()->getClientIps());
 
         if ($response) {
             return view('index', [
                 'newsData' => $news,
-                // 'userInfo' => $data
             ]);
         } else {
             abort(404);
@@ -27,8 +26,17 @@ class news extends Controller
 
     }
 
-    public function getTopHeadlines() {
+    public function getByCategory($category) {
 
-        $response = Http::get('https://newsapi.org/v2/top-headlines?apiKey=' . env('NEWS_API_KEY') .'&country=my');
+        $response = Http::get('https://newsapi.org/v2/top-headlines?apiKey=' . env('NEWS_API_KEY') .'&category=' . $category . '&country=my');
+        $newsByCategory = $response->json();
+
+        if ($response) {
+            return view('index', [
+                'newsData' => $newsByCategory,
+            ]);
+        } else {
+            abort(404);
+        }
     }
 }

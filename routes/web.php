@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [news::class, 'getEverything']);
+Route::get('/', [news::class, 'getTopHeadlines']);
 
-// Route::get('/test', [news::class, 'get'])
+Route::get('/category/{category}', [news::class, 'getByCategory']);

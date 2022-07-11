@@ -6,7 +6,10 @@
                 <x-news-card :news="$news" />
                 <div class="col">
                     <div class="card">
-                        <img src="{{ $news['urlToImage'] }}" class="card-img-top " alt="...">
+                        <img 
+                            src="{{ $news['urlToImage']? $news['urlToImage'] : asset('images/coverFade.png') }}" 
+                            class="card-img-top " 
+                            alt="Loading...">
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="{{ $news['url'] }}">
