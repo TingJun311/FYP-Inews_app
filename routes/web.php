@@ -25,5 +25,11 @@ Route::get('/category/{category}', [news::class, 'getByCategory']);
 Route::get('/login', [UserController::class, 'login']);
 // Show register page to user 
 Route::get('/register', [UserController::class, 'register']);
-
+// Create a new users
 Route::post('/register/newUser', [UserController::class, 'store']);
+
+// Users logging out
+Route::post('/users/logout', [UserController::class, 'logout']);
+
+// Sign in users
+Route::post('/users/login/authenticate', [UserController::class, 'authenticate']);

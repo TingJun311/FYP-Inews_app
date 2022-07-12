@@ -27,27 +27,59 @@
                     <span>or Sign in with Email</span>
                 </div>
 
-                <div class="login-form-group">
-                    <label for="email">Email <span class="required-star">*</span></label>
-                    <input type="text" placeholder="email@website.com" id="email">
-                </div>
-                <div class="login-form-group">
-                    <label for="pwd">Password <span class="required-star">*</span></label>
-                    <input autocomplete="off" type="text" placeholder="Minimum 8 characters" id="pwd">
-                </div>
-                
-                <div class="login-form-group single-row">
-                    <div class="custom-check">
-                        <input autocomplete="off" type="checkbox" checked id="remember"><label for="remember">Remember me</label>
+                <form action="/users/login/authenticate" method="POST">
+                    @csrf
+                    <div class="login-form-group">
+                        <label for="email">Email <span class="required-star">*</span></label>
+                        <input 
+                            type="text" 
+                            placeholder="email@website.com" 
+                            id="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            @error('email')
+                                style="border: 2px solid red"
+                            @enderror
+                        >
+                        @error('email')
+                            <p class="errorMsg">{{ $message }}</p>
+                        @enderror
                     </div>
-                    <a href="#" class="link forgot-link">Forgot Password ?</a>
-                </div>
-                
-                <a href="#" class="rounded-button login-cta">Login</a>
-                <div class="register-div">
-                    Not registered yet? 
-                    <a href="/register" class="link create-account" -link>Create an account ?</a>
-                </div>
+                    <div class="login-form-group">
+                        <label for="pwd">Password <span class="required-star">*</span></label>
+                        <input 
+                            autocomplete="off" 
+                            type="text" 
+                            placeholder="Minimum 8 characters" 
+                            id="pwd"
+                            name="password"
+                            value="{{ old('password') }}"
+                            @error('password')
+                                style="border: 2px solid red"
+                            @enderror
+                        >
+                        @error('password')
+                            <p class="errorMsg">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    @error('errorLoggingIn')
+                        <p class="errorMsg">{{ $message }}</p>
+                    @enderror
+                    <div class="login-form-group single-row">
+                        <div class="custom-check">
+                            <input autocomplete="off" type="checkbox" checked id="remember"><label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="link forgot-link">Forgot Password ?</a>
+                    </div>
+                    
+                    <button class="rounded-button login-cta"  type="submit">
+                        <a href="#">Login</a>
+                    </button>
+                    <div class="register-div">
+                        Not registered yet? 
+                        <a href="/register" class="link create-account" -link>Create an account ?</a>
+                    </div>
+                </form>
             </div>
 
         </div>
