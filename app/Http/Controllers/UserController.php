@@ -18,7 +18,14 @@ class UserController extends Controller
         $formValue = $request->validate([
             'name' => ['required', 'min:6'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'confirmed','min:8']
+
+            // Regular expressions 
+            // English uppercase characters (A – Z)
+            // English lowercase characters (a – z)
+            // Base 10 digits (0 – 9)
+            // Non-alphanumeric (For example: !, $, #, or %)
+            // Unicode characters
+            'password' => ['required', 'confirmed','min:8', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/']
         ]);
 
         return redirect('/');

@@ -37,11 +37,14 @@
                         name="name"
                         autocomplete="off" 
                         type="text" 
-                        id="username"
+                        id="username errorBx"
                         value="{{ old('name') }}"
+                        @error('name')  
+                            style="border: 2px solid red"
+                        @enderror
                     >
                     @error('name')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="errorMsg">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="login-form-group">
@@ -53,9 +56,12 @@
                         placeholder="email@website.com" 
                         id="email"
                         value="{{ old('email') }}"
+                        @error('email')  
+                            style="border: 2px solid red"
+                        @enderror
                     >
                     @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="errorMsg">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="login-form-group">
@@ -67,9 +73,12 @@
                         placeholder="Minimum 8 characters" 
                         id="pwd"
                         value="{{ old('password') }}"
+                        @error('password')  
+                            style="border: 2px solid red"
+                        @enderror
                     >
                     @error('password')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="errorMsg">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="login-form-group">
@@ -81,9 +90,12 @@
                         placeholder="Re-type the password" 
                         id="confirmPw"
                         value="{{ old('password_confirmation') }}"
+                        @error('password_confirmation')  
+                            style="border: 2px solid red"
+                        @enderror
                     >
                     @error('password_confirmation')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="errorMsg">{{ $message }}</p>
                     @enderror
                 </div>
                 <button class="rounded-button login-cta" type="submit">
@@ -92,7 +104,7 @@
                 
                 <div class="login-form-group single-row">
                     <div class="custom-check">
-                        <div class="register-div">Already have an account? <a href="/register" class="link create-account" -link>Login here</a></div>
+                        <div class="register-div">Already have an account? <a href="/login" class="link create-account" -link>Login here</a></div>
                     </div>
                 </div>
             </form>
