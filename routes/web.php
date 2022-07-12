@@ -25,3 +25,5 @@ Route::get('/category/{category}', [news::class, 'getByCategory']);
 Route::get('/login', [UserController::class, 'login']);
 // Show register page to user 
 Route::get('/register', [UserController::class, 'register']);
+
+Route::post('/register/newUser', [UserController::class, 'store']);

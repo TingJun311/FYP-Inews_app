@@ -1,104 +1,112 @@
 
-{{-- tailwind css --}}
-<script src="https://cdn.tailwindcss.com"></script>
 
-<x-layout>
-    <x-card class="p-10 max-w-lg mx-auto mt-24">
-        <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1">
-                Register
-            </h2>
-            <p class="mb-4">Create an account to post gigs</p>
-        </header>
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-        <form action="/users" method="POST">
-            @csrf
-            <div class="mb-6">
-                <label for="name" class="inline-block text-lg mb-2">
-                    Name
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="name"
-                    value="{{ old('name') }}"
-                />
-
-                @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+<body>
+    
+    <div class="login-container">
+        <div class="onboarding">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide color-1">
+                        <div class="slide-image">
+                            <img src="{{ asset('images/registerLogo.png') }}" loading="lazy" alt="" />
+                        </div>
+                        <div class="slide-content">
+                            <h2>Explore the Inews</h2>
+                            <p>Inews is an operational business division of the world Broadcasting Corporation responsible for the gathering and broadcasting of news and current affairs in around the world.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
-
-            <div class="mb-6">
-                <label for="email" class="inline-block text-lg mb-2"
-                    >Email</label
-                >
-                <input
-                    type="email"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="email"
-                    value="{{ old('email') }}"
-                />
-                @error('email')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+        </div>
+        <div class="login-form">
+        <div class="login-form-inner">
+            <div class="logo">
+                <a href="/">Back</a>
             </div>
+                <h1>Register</h1>
 
-            <div class="mb-6">
-                <label
-                    for="password"
-                    class="inline-block text-lg mb-2"
-                >
-                    Password
-                </label>
-                <input
-                    type="password"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="password"
-                    value="{{ old('password') }}"
-                />
-                @error('password')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label
-                    for="password2"
-                    class="inline-block text-lg mb-2"
-                >
-                    Confirm Password
-                </label>
-                <input
-                    type="password"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="password_confirmation"
-                    value="{{ old('password_confirmation') }}"
-                />
-                @error('password_confirmation')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <button
-                    type="submit"
-                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                >
-                    Sign Up
+            <form action="/register/newUser" method="POST">
+                @csrf
+                <div class="login-form-group">
+                    <label for="username">Username <span class="required-star">*</span></label>
+                    <input 
+                        name="name"
+                        autocomplete="off" 
+                        type="text" 
+                        id="username"
+                        value="{{ old('name') }}"
+                    >
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="login-form-group">
+                    <label for="email">Email <span class="required-star">*</span></label>
+                    <input 
+                        name="email"
+                        autocomplete="off" 
+                        type="text" 
+                        placeholder="email@website.com" 
+                        id="email"
+                        value="{{ old('email') }}"
+                    >
+                    @error('email')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="login-form-group">
+                    <label for="pwd">Password <span class="required-star">*</span></label>
+                    <input 
+                        name="password"
+                        autocomplete="off" 
+                        type="password" 
+                        placeholder="Minimum 8 characters" 
+                        id="pwd"
+                        value="{{ old('password') }}"
+                    >
+                    @error('password')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="login-form-group">
+                    <label for="confirmPw">Confirm password <span class="required-star">*</span></label>
+                    <input 
+                        name="password_confirmation"
+                        autocomplete="off" 
+                        type="password" 
+                        placeholder="Re-type the password" 
+                        id="confirmPw"
+                        value="{{ old('password_confirmation') }}"
+                    >
+                    @error('password_confirmation')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <button class="rounded-button login-cta" type="submit">
+                    <a href="#" class="loginBtn">Sign Up</a>
                 </button>
-            </div>
-
-            <div class="mt-8">
-                <p>
-                    Already have an account?
-                    <a href="/login" class="text-laravel">
-                        Login
-                    </a>
-                </p>
-            </div>
-        </form>
-    </x-card>
-    <br>
-    <br>
-</x-layout>
+                
+                <div class="login-form-group single-row">
+                    <div class="custom-check">
+                        <div class="register-div">Already have an account? <a href="/register" class="link create-account" -link>Login here</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    var swiper = new Swiper(".swiper-container", {
+        pagination: ".swiper-pagination",
+        paginationClickable: true,
+        parallax: true,
+        speed: 600,
+        autoplay: 3500,
+        loop: true,
+        grabCursor: true
+    });
+</script>
