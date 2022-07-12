@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\userFavorite;
 use App\Http\Controllers\news;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [news::class, 'getTopHeadlines']);
 
 Route::get('/category/{category}', [news::class, 'getByCategory']);
+
+// User show login
+Route::get('/login', [UserController::class, 'login']);
+// Show register page to user 
+Route::get('/register', [UserController::class, 'register']);
