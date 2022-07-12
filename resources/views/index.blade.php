@@ -39,7 +39,7 @@
             method: 'GET',
             headers: {
                 'X-RapidAPI-Key': '{{ env("API_KEY") }}',
-                'X-RapidAPI-Host': 'free-news.p.rapidapi.com',
+                'X-RapidAPI-Host': '{{ env("API_HOST") }}',
             }
         };
         try {
