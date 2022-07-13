@@ -77,9 +77,18 @@
                                         </strong>
                                     </h5>
                                     <br>
-                                    <p>
-                                        visit <a href=${link} >${link.substring(0, 50)}</a>...  to read more
-                                    </p>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                visit <a href=${link} >${link.substring(0, 50)}</a>...  to read more
+                                            </div>
+                                            <div class="col-3 text-end">
+                                                <a href="/bookmark/{${article}}">    
+                                                    <i class="fas fa-regular fa-bookmark"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <p class="card-text">
                                         ${article.article.text}
                                     </p>

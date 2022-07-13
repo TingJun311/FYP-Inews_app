@@ -48,4 +48,8 @@ class news extends Controller
         ]);
 
     }
+
+    public function bookmark($articles) {
+        dd($articles);
+    }
 }
