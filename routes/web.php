@@ -21,8 +21,11 @@ Route::get('/', [news::class, 'getTopHeadlines']);
 
 Route::get('/category/{category}', [news::class, 'getByCategory']);
 
+// View single news
+Route::post('/article/news', [news::class, 'getArticles']);
+
 // User show login
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name(('login'));
 // Show register page to user 
 Route::get('/register', [UserController::class, 'register']);
 // Create a new users

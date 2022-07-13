@@ -25,34 +25,16 @@
                 @endforeach
             </div>
         @else     --}}
-
-        <div class="card" aria-hidden="true">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title placeholder-glow">
-                    <span class="placeholder col-6"></span>
-                </h5>
-                <p class="card-text placeholder-glow">
-                    <span class="placeholder col-7"></span>
-                    <span class="placeholder col-4"></span>
-                    <span class="placeholder col-4"></span>
-                    <span class="placeholder col-6"></span>
-                    <span class="placeholder col-8"></span>
-                </p>
-                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-            </div>
-        </div>
-            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template">
+            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template" style="margin-left: 6rem;">
                 <div class="col">
                     <div class="card">
-                    <img class="card-img-top skeleton header-img ">
-                    <div class="card-body">
-                        <h5 class="card-title skeleton skeleton-text"></h5>
-                        <p class="card-text skeleton skeleton-text"></p>
-                    </div>
+                        <img class="card-img-top skeleton header-img ">
+                        <div class="card-body">
+                            <h5 class="card-title skeleton skeleton-text"></h5>
+                            <p class="card-text skeleton skeleton-text"></p>
+                        </div>
                     </div>
                 </div>
-                
                 <div class="col">
                     <div class="card">
                         <img class="card-img-top skeleton header-img ">
@@ -114,8 +96,21 @@
                                     <div class="card">
                                         <img src=${user.media}>
                                         <div class="card-body">
-                                            <h2 class="card-title">${user.title}</h2>
-                                            <div class="email"><a href="${user.link}">${user.title}</a></div>
+                                            <form action="/article/news" method="POST" >
+                                                @csrf
+                                                <h2 class="card-title">
+                                                    <input id="hideInput" name="link" value="${user.link}" style="display: none;" >
+                                                    <button type="submit">
+                                                        <a href="#">${user.title}</a>
+                                                    </button>
+                                                </h2>
+                                            </form>
+                                            <div class="card-text">
+                                                <p>${user.summary.substring(0, 200)}...</p>
+                                            </div>
+                                            <p class="card-text">
+                                                <small class="text-muted">${user.published_date}</small>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

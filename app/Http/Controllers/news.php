@@ -39,4 +39,13 @@ class news extends Controller
             abort(404);
         }
     }
+
+    // Get single articles
+    public function getArticles() {
+
+        return view('news.article', [
+            "link" => request()->link
+        ]);
+
+    }
 }

@@ -67,7 +67,7 @@
                     @enderror
                     <div class="login-form-group single-row">
                         <div class="custom-check">
-                            <input autocomplete="off" type="checkbox" checked id="remember"><label for="remember">Remember me</label>
+                            <input autocomplete="off" type="checkbox" id="remember"><label for="remember">Remember me</label>
                         </div>
                         <a href="#" class="link forgot-link">Forgot Password ?</a>
                     </div>
