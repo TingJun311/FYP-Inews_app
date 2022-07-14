@@ -82,10 +82,10 @@
                                             <div class="col-9">
                                                 visit <a href=${link} >${link.substring(0, 50)}</a>...  to read more
                                             </div>
-                                            <div class="col-3 text-end">
-                                                <a href="/bookmark/{${article}}">    
+                                            <div class="col-3 text-end" id="bookmarkBx">
+                                                <button onClick={bookmark()}>    
                                                     <i class="fas fa-regular fa-bookmark"></i>
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -111,4 +111,43 @@
         }
     }
     renderArticle();
+
+    async function bookmark() {
+        const bookmarkBx = document.querySelector('#bookmarkBx');
+        bookmarkBx.innerHTML = `
+                                <div class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            `
+        let articles = await getEndPoint();
+
+        if (articles.status === "ok") {
+
+            // Destructuring Nested Objects
+            const { article: { source_url, published, title, text  } } = articles;
+
+            var data = {
+                source_url: source_url,
+                published: published,
+                title: title,
+                text: text,
+                _token: '{{csrf_token()}}'
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/bookmark/article',
+                dataType: 'json',           
+                data: data,
+                success: function(data) {
+                    bookmarkBx.innerHTML = `
+                                            <i class="fas fa-solid fa-check"></i>
+                                        `
+                },
+                error: function() {
+                    console.log("Error");
+                }
+            });
+            console.log(data);
+        }
+    }
 </script>

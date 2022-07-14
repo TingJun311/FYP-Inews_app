@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http; // To fetch API endpoints
 use App\Helpers\UserSystemInfoHelper; // a class to get user system information 
-use Stevebauman\Location\Facades\Location; // Composer packages to get client ip
+use Stevebauman\Location\Facades\Location; // Composer packages to get client ip~
 
 class news extends Controller
 {
@@ -49,7 +49,8 @@ class news extends Controller
 
     }
 
-    public function bookmark($articles) {
-        dd($articles);
+    public function bookmark(Request $request) {
+        // POST request from ajax through laravel post route
+        return response()->json($request->all());
     }
 }

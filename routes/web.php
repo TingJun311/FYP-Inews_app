@@ -31,7 +31,7 @@ Route::get('/category/{category}', [news::class, 'getByCategory']);
 // View single news
 Route::post('/article/news', [news::class, 'getArticles']);
 // Bookmark news articles
-Route::get('/bookmark/{articles}', [news::class, 'bookmark']);
+Route::post('/bookmark/article', [news::class, 'bookmark']);
 
 // User show login
 Route::get('/login', [UserController::class, 'login'])->name(('login'))->middleware('guest');
