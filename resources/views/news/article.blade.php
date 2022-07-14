@@ -123,14 +123,18 @@
 
         if (articles.status === "ok") {
 
-            // Destructuring Nested Objects
-            const { article: { source_url, published, title, text  } } = articles;
+            // Destructuring Nested Objects and array
+            const { article: { source_url, published, title, text, authors, top_image } } = articles;
+            const [author, ...rest] = authors;
 
             var data = {
                 source_url: source_url,
                 published: published,
                 title: title,
                 text: text,
+                url: link,
+                author: author,
+                image: top_image,
                 _token: '{{csrf_token()}}'
             };
             $.ajax({
@@ -142,12 +146,12 @@
                     bookmarkBx.innerHTML = `
                                             <i class="fas fa-solid fa-check"></i>
                                         `
+                    console.log(data);
                 },
                 error: function() {
                     console.log("Error");
                 }
             });
-            console.log(data);
         }
     }
 </script>

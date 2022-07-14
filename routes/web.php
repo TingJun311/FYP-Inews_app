@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use App\Models\User;
 use App\Models\userFavorite;
 use App\Http\Controllers\news;
 use App\Http\Controllers\UserController;
+use App\Models\Bookmarks;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,7 @@ Route::get('/category/{category}', [news::class, 'getByCategory']);
 // View single news
 Route::post('/article/news', [news::class, 'getArticles']);
 // Bookmark news articles
-Route::post('/bookmark/article', [news::class, 'bookmark']);
+Route::post('/bookmark/article', [BookmarkController::class, 'store']);
 
 // User show login
 Route::get('/login', [UserController::class, 'login'])->name(('login'))->middleware('guest');
@@ -45,3 +47,7 @@ Route::post('/users/logout', [UserController::class, 'logout'])->middleware('aut
 
 // Sign in users
 Route::post('/users/login/authenticate', [UserController::class, 'authenticate']);
+
+// Get auth users bookmark
+Route::get('/users/bookmark', [BookmarkController::class, 'getUsersBookmark']); 
+// Currently there are no button to this route
