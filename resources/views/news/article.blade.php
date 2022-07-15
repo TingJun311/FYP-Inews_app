@@ -83,9 +83,31 @@
                                                 visit <a href=${link} >${link.substring(0, 50)}</a>...  to read more
                                             </div>
                                             <div class="col-3 text-end" id="bookmarkBx">
-                                                <button onClick={bookmark()}>    
-                                                    <i class="fas fa-regular fa-bookmark"></i>
-                                                </button>
+                                                @auth
+                                                    <button onClick={bookmark()}>    
+                                                        <i class="fas fa-regular fa-bookmark"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="btn btn-primary" id="liveToastBtn" onClick={toastTrigger()}>
+                                                        <i class="fas fa-regular fa-bookmark"></i>
+                                                    </button>
+                                                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                                                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                            <div class="toast-header">
+                                                                // <img src="..." class="rounded me-2" alt="...">
+                                                                <strong class="me-auto">Notice</strong>
+                                                                <small>
+                                                                    {{ now() }}
+                                                                </small>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                                                                </button>
+                                                            </div>
+                                                            <div class="toast-body">
+                                                                Sign In to bookmark!
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>
@@ -146,12 +168,19 @@
                     bookmarkBx.innerHTML = `
                                             <i class="fas fa-solid fa-check"></i>
                                         `
-                    console.log(data);
                 },
                 error: function() {
                     console.log("Error");
                 }
             });
         }
+    }
+
+    // For triggering toast component when unauth user click bookmark button
+    function toastTrigger() {
+        const toast = document.querySelector('#liveToast');
+
+        var toastLive = new bootstrap.Toast(toast)
+        toastLive.show()
     }
 </script>

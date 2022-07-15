@@ -49,5 +49,5 @@ Route::post('/users/logout', [UserController::class, 'logout'])->middleware('aut
 Route::post('/users/login/authenticate', [UserController::class, 'authenticate']);
 
 // Get auth users bookmark
-Route::get('/users/bookmark', [BookmarkController::class, 'getUsersBookmark']); 
+Route::get('/users/bookmark', [BookmarkController::class, 'show'])->middleware('auth'); 
 // Currently there are no button to this route

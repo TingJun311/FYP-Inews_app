@@ -107,6 +107,9 @@
                                         Logout
                                     </button>
                                 </form>
+                                <button>
+                                    <a href="/users/bookmark">show</a>
+                                </button>
                             </div>
                         </div>
                     @else
