@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class BookmarkController extends Controller
 {
-    // public function getUsersBookmark() {
-    //     return view('users.bookmark', [
-    //         'bookmarks' => Bookmarks::all()
-    //     ]);
-    // }
 
     public function store(Request $request) {
         

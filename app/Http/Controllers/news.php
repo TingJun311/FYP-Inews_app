@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Http; // To fetch API endpoints
 use App\Helpers\UserSystemInfoHelper; // a class to get user system information 
 use Stevebauman\Location\Facades\Location; // Composer packages to get client ip~
 
+use function PHPUnit\Framework\isNull;
+
 class news extends Controller
 {
     public function getTopHeadlines() {
@@ -53,4 +55,13 @@ class news extends Controller
         // POST request from ajax through laravel post route
         return response()->json($request->all());
     }
+
+    public function searchNews(Request $request) {
+        // return response()->json($request->all());
+
+        if (!isNull($request->searchBpx) || !empty($request->searchBox))
+            return view('search.result', [
+                'searchData' => $request->searchBox
+            ]);
+        }
 }

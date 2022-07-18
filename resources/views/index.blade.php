@@ -25,7 +25,7 @@
                 @endforeach
             </div>
         @else     --}}
-            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template" style="margin-left: 6rem;">
+            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template">
                 <div class="col">
                     <div class="card">
                         <img class="card-img-top skeleton header-img ">

@@ -88,22 +88,24 @@
                                                         <i class="fas fa-regular fa-bookmark"></i>
                                                     </button>
                                                 @else
-                                                    <button type="button" class="btn btn-primary" id="liveToastBtn" onClick={toastTrigger()}>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="fas fa-regular fa-bookmark"></i>
                                                     </button>
-                                                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-                                                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                                            <div class="toast-header">
-                                                                // <img src="..." class="rounded me-2" alt="...">
-                                                                <strong class="me-auto">Notice</strong>
-                                                                <small>
-                                                                    {{ now() }}
-                                                                </small>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                                                                </button>
-                                                            </div>
-                                                            <div class="toast-body">
-                                                                Sign In to bookmark!
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content rounded-6 shadow">
+                                                                <div class="modal-header border-bottom-0">
+                                                                    <h5 class="modal-title">Modal title</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body py-0">
+                                                                    <p>This is a modal sheet, a variation of the modal that docs itself to the bottom of the viewport like the newer share sheets in iOS.</p>
+                                                                </div>
+                                                                <div class="modal-footer flex-column border-top-0">
+                                                                    <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2">Save changes</button>
+                                                                    <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">Close</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -177,10 +179,10 @@
     }
 
     // For triggering toast component when unauth user click bookmark button
-    function toastTrigger() {
-        const toast = document.querySelector('#liveToast');
+    // function toastTrigger() {
+    //     const toast = document.querySelector('#liveToast');
 
-        var toastLive = new bootstrap.Toast(toast)
-        toastLive.show()
-    }
+    //     var toastLive = new bootstrap.Toast(toast)
+    //     toastLive.show()
+    // }
 </script>

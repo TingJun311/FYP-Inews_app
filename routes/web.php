@@ -4,6 +4,7 @@ use App\Http\Controllers\BookmarkController;
 use App\Models\User;
 use App\Models\userFavorite;
 use App\Http\Controllers\news;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\UserController;
 use App\Models\Bookmarks;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,11 @@ Route::post('/users/login/authenticate', [UserController::class, 'authenticate']
 // Get auth users bookmark
 Route::get('/users/bookmark', [BookmarkController::class, 'show'])->middleware('auth'); 
 // Currently there are no button to this route
+
+
+// Oauth provider login
+Route::get('/auth/google', [ProviderController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [ProviderController::class, 'handle']);
+
+// Search box
+Route::post('/search/news', [news::class, 'searchNews']);
