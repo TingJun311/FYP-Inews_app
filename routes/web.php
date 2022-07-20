@@ -4,6 +4,7 @@ use App\Http\Controllers\BookmarkController;
 use App\Models\User;
 use App\Models\userFavorite;
 use App\Http\Controllers\news;
+use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\UserController;
 use App\Models\Bookmarks;
@@ -60,3 +61,9 @@ Route::get('/auth/google/callback', [ProviderController::class, 'handle']);
 
 // Search box
 Route::post('/search/news', [news::class, 'searchNews']);
+
+// For pagination 
+Route::post('/page/{currentPage}', [PaginationController::class, 'getPage']);
+
+// For changing the lang
+Route::post('/lang', [PaginationController::class, 'getLang']);

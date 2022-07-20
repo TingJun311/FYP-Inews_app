@@ -67,7 +67,7 @@ nav .content .links {
 }
 .content .links li a:hover,
 .content .links li label:hover {
-    background: #323c4e;
+    background: #6f5bf1;
 }
 .wrapper .search-icon,
 .wrapper .menu-icon {
@@ -105,7 +105,7 @@ nav .content .links {
     outline: none;
     font-size: 17px;
     color: #fff;
-    background: #171c24;
+    background: #5138ee;
     padding: 0 100px 0 15px;
 }
 .search-box input::placeholder {
@@ -118,7 +118,7 @@ nav .content .links {
     transform: translateY(-50%);
     line-height: 60px;
     width: 70px;
-    background: #171c24;
+    background: #5138ee;
     border: none;
     outline: none;
     color: #fff;

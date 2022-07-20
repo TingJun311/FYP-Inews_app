@@ -1,128 +1,184 @@
 
+<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+<style>
+    #sideNav {
+        position: sticky;
+    }
+</style>
 <x-layout>
-    {{-- @unless (count((array)$newsData) == 0)
-        @if ($newsData['status'] != 'error')
-            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center">
-
-                @foreach ($newsData['articles'] as $news)
-                    <x-news-card :news="$news" />
-                    <div class="col">
-                        <div class="card">
-                            <img 
-                                src="{{ $news['urlToImage']? $news['urlToImage'] : asset('images/coverFade.png') }}" 
-                                class="card-img-top " 
-                                alt="Loading...">
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="{{ $news['url'] }}">
-                                        {{ $news['title'] }}
-                                    </a>
-                                </h4>
-                                <p class="card-text ">{{ $news['description'] }}.</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 300px; position: fixed;" id="sideNav">
+                    <div class="list-group list-group-flush border-bottom scrollarea">
+                        <a href="/category/business" class="list-group-item active list-group-item-action py-3 lh-tight" aria-current="true">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Business</strong>
                             </div>
-                        </div>
+                        </a>
+                        <a href="/category/entertainment" class="list-group-item list-group-item-action py-3 lh-tight">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Entertainment</strong>
+                            </div>
+                        </a>
+                        <a href="/category/health" class="list-group-item list-group-item-action py-3 lh-tight">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Health</strong>
+                            </div>
+                        </a>
+                        <a href="/category/sciences" class="list-group-item list-group-item-action py-3 lh-tight">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Sciences</strong>
+                            </div>
+                        </a>
+                        <a href="/category/sports" class="list-group-item list-group-item-action py-3 lh-tight">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Sports</strong>
+                            </div>
+                        </a>
+                        <a href="/category/technology" class="list-group-item list-group-item-action py-3 lh-tight">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <strong class="mb-1">Technology</strong>
+                            </div>
+                        </a>
                     </div>
-                @endforeach
+                </div>    
+            </div> 
+            <div class="col-7">
+                <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template"></div>
+                <br>
+                <br>
+                <div id="pagination"></div>
             </div>
-        @else     --}}
-            <div class="container row row-cols-1 row-cols-md-2 g-4 text-center card-template">
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top skeleton header-img ">
-                        <div class="card-body">
-                            <h5 class="card-title skeleton skeleton-text"></h5>
-                            <p class="card-text skeleton skeleton-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top skeleton header-img ">
-                        <div class="card-body">
-                            <h5 class="card-title skeleton skeleton-text"></h5>
-                            <p class="card-text skeleton skeleton-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top skeleton header-img ">
-                        <div class="card-body">
-                            <h5 class="card-title skeleton skeleton-text"></h5>
-                            <p class="card-text skeleton skeleton-text"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top skeleton header-img ">
-                        <div class="card-body">
-                            <h5 class="card-title skeleton skeleton-text"></h5>
-                            <p class="card-text skeleton skeleton-text"></p>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-2">
+                <label for="lang">Language:</label>
+                <select name="lang" id="language" onchange="{onChangeLang()}">
+                    <option value="en">English</option>
+                    <option value="zh">Chinese</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="it">Italian</option>
+                    <option value="nl">Dutch</option>
+                    <option value="ru">Russian</option>
+                    <option value="sv">Swedish</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="no">Norwegian</option>
+                    <option value="ar">Arabic</option>
+                    <option value="he">Hebrew</option>
+                </select>
             </div>
-        {{-- @endif
-    @else
-        <p>No data</p>
-    @endunless --}}
+        </div>
+    </div>
 </x-layout>
 <script>
-    async function testing() {
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '{{ env("API_KEY") }}',
-                'X-RapidAPI-Host': '{{ env("API_HOST") }}',
-            }
-        };
-        try {
-            let res = await fetch('https://free-news.p.rapidapi.com/v1/search?q=latest&lang=en', options);
-            return await res.json();
-            
-        } catch (error) {
-            console.log(error);
-        }
-    } 
+    const newsComponent = (articles) => {
+        const container = document.querySelector('.card-template');
+        let component = '';
 
-    async function renderUsers() {
-        let users = await testing();
-        let html = '';
-        console.log(users);
-        users.articles.forEach(user => {
+        articles.forEach(article => {
+            let text = (article.summary !== null)? article.summary.substring(0, 200) : "No text";
             let htmlSegment = `
-                                <div class="col">
-                                    <div class="card">
-                                        <img src=${user.media}>
-                                        <div class="card-body">
-                                            <form action="/article/news" method="POST" >
-                                                @csrf
-                                                <h2 class="card-title">
-                                                    <input id="hideInput" name="link" value="${user.link}" style="display: none;" >
-                                                    <button type="submit">
-                                                        <a href="#">${user.title}</a>
-                                                    </button>
-                                                </h2>
-                                            </form>
-                                            <div class="card-text">
-                                                <p>${user.summary.substring(0, 200)}...</p>
-                                            </div>
-                                            <p class="card-text">
-                                                <small class="text-muted">${user.published_date}</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-
-            html += htmlSegment;
+                <div class="col">
+                    <div class="card">
+                        <img src=${article.media}>
+                        <div class="card-body">
+                            <form action="/article/news" method="POST" >
+                                @csrf
+                                <h2 class="card-title">
+                                    <input id="hideInput" name="link" value="${article.link}" style="display: none;" >
+                                    <button type="submit">
+                                        <a href="#">${article.title}</a>
+                                    </button>
+                                </h2>
+                            </form>
+                            <div class="card-text">
+                                <p>${text}...</p>
+                            </div>
+                            <p class="card-text">
+                                <small class="text-muted">${article.published_date}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            component += htmlSegment;
         });
 
-        const container = document.querySelector('.card-template');
-        const grid = document.querySelector('.grid');
-        container.innerHTML = html;
-    }
+        container.innerHTML = component;
+    };
 
-    renderUsers();
+
+    const onChangeLang = () => {
+        const centerDiv = document.querySelector('.card-template');
+        const emptyPagination = document.querySelector('#pagination');
+        emptyPagination.innerHTML = "";
+        centerDiv.innerHTML = `
+                            <div class="text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                            `;
+
+        const selectedLang = $('#language').find(':selected').val();
+            var data = {
+                lang: selectedLang,
+                _token: $('meta[name="_token"]').attr('content')
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/lang',
+                dataType: 'json',           
+                data: data,
+                success: function(data) {
+                    const { articles, status, totalResults } = data;
+                    console.log(data);
+                    newsAPIComponent(articles);
+                },
+                error: function() {
+                    console.log("Error");
+                }
+            });
+    };
+
+    const newsAPIComponent = (articles) => {
+        const centerDiv = document.querySelector('.card-template');
+        let component = '';
+
+        articles.forEach(article => {
+            const { author, source, title, description, publishedAt, url, urlToImage } = article;
+            let text = (title !== null)? title : "No title";
+            let htmlSegment = `
+                <div class="col">
+                    <div class="card">
+                        <img src=${(urlToImage !== null)? urlToImage : '{{ asset("images/default1.png") }}'}>
+                        <div class="card-body">
+                            <form action="/article/news" method="POST" >
+                                @csrf
+                                <h2 class="card-title">
+                                    <input id="hideInput" name="link" value="${url}" style="display: none;" >
+                                    <button type="submit">
+                                        <a href="${url}">${title}</a>
+                                    </button>
+                                </h2>
+                            </form>
+                            <div class="card-text">
+                                <p>${text}...</p>
+                            </div>
+                            <p class="card-text">
+                                <small class="text-muted">${publishedAt}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            component += htmlSegment;
+        });
+
+        centerDiv.innerHTML = component;
+    };
+
 </script>
+<script src="{{ asset('js/index.js') }}"></script>

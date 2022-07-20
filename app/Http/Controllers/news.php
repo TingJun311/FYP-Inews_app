@@ -29,17 +29,9 @@ class news extends Controller
     }
 
     public function getByCategory($category) {
-
-        $response = Http::get('https://newsapi.org/v2/top-headlines?apiKey=' . env('NEWS_API_KEY') .'&category=' . $category . '&country=my&pageSize=100');
-        $newsByCategory = $response->json();
-
-        if ($response) {
-            return view('index', [
-                'newsData' => $newsByCategory,
-            ]);
-        } else {
-            abort(404);
-        }
+        return view('news.category', [
+            'category' => $category,
+        ]);
     }
 
     // Get single articles
