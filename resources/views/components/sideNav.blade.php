@@ -10,15 +10,16 @@
         'sports' => null,
         'technology' => null
     ];
-
-    switch ($curCategory) {
-        case 'business':
+    
+    if (isset($curCategory)) {
+        switch ($curCategory) {
+            case 'business':
             $category['business'] = 'active';
             break;
-        case 'entertainment':
+            case 'entertainment':
             $category['entertainment'] = 'active';
             break;
-        case 'health':
+            case 'health':
             $category['health'] = 'active';
             break;
         case 'sciences':
@@ -28,10 +29,11 @@
             $category['sports'] = 'active';
             break;
         case 'technology':
-            $category['technology'] = 'active';
+        $category['technology'] = 'active';
             break;
         default:
             break;
+        }
     }
 @endphp
 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 300px; position: fixed;" id="sideNav">

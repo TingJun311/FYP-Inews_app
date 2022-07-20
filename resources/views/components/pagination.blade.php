@@ -9,7 +9,6 @@
     
     $paginateButton['previous'] = ($currentPage <= 1)? 'disabled' : '';
     $paginateButton['next'] = ($currentPage == $totalPage)? 'disabled' : '';
-    
 @endphp
 <nav>
     <ul class="pagination justify-content-center">

@@ -124,15 +124,16 @@
                 <div id="contentDiv">
                     <div id="laodingBx"></div>
                 </div>
+                <div id="pagination"></div>
             </div>
             <div class="col-2">
-
             </div>
         </div>
     </div>
 </x-layout>
 <script>
     const category = {!! json_encode($category) !!};
+    const reqPage = {!! json_encode($page) !!};
     async function getNews(category, page) {
         const options = {
             method: 'GET',
@@ -156,9 +157,10 @@
         const response = await getNews(category, curPage);
         const { articles, status, page, page_size, total_hits, total_pages  } = response;
         centerDiv.innerHTML = contentComponent(articles);
+        paginationComponent(page, total_pages, category);
     }
     window.addEventListener("load", () => {
-        renderComponent(category, 1);
+        renderComponent(category, reqPage);
     });
 
     const laodingScreen = () => {
@@ -209,5 +211,35 @@
 
         template += divEnd;
         return template;
+    };
+
+    function paginationComponent(curPage, total_pages, category) {
+        const pageDiv = document.querySelector("#pagination");
+
+        let template = ``;
+
+        const paginateButton = {
+            previous: null,
+            next: null,
+        }
+
+        paginateButton.previous = (curPage <= 1)? 'disabled' : null;
+        paginateButton.next = (curPage === total_pages)? 'disabled' : null;
+
+        pageDiv.innerHTML = `
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item ${paginateButton.previous}">
+                                            <a class="page-link" herf="/category/${category}/${curPage - 1}">Previous</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">${curPage}</a>
+                                        </li>
+                                        <li class="page-item ${paginateButton.next}">
+                                            <a class="page-link" href="/category/${category}/${curPage + 1}">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            `;
     };
 </script>

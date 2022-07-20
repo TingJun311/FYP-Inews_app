@@ -56,8 +56,8 @@ Route::get('/users/bookmark', [BookmarkController::class, 'show'])->middleware('
 
 
 // Oauth provider login
-Route::get('/auth/google', [ProviderController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [ProviderController::class, 'handle']);
+Route::get('/auth/google', [ProviderController::class, 'redirectToGoogle'])->middleware('guest');
+Route::get('/auth/google/callback', [ProviderController::class, 'handle'])->middleware('guest');
 
 // Search box
 Route::post('/search/news', [news::class, 'searchNews']);
@@ -67,3 +67,17 @@ Route::post('/page/{currentPage}', [PaginationController::class, 'getPage']);
 
 // For changing the lang
 Route::post('/lang', [PaginationController::class, 'getLang']);
+
+// Page route for the categories
+Route::get('/category/{category}/{page}', [PaginationController::class, 'getCategoryByPage']);
+
+
+
+
+
+
+// Testing
+Route::get("/home/{category}/{lang}/{articles}/{page}/{totalPages}", [news::class, 'getLatest']); // AJAX success route
+Route::post('/getLatest', [news::class, 'getAPINews']); //AJAX route
+// simulate home
+Route::get("/simulateHome", [news::class, 'getNews']);

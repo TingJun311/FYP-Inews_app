@@ -39,4 +39,11 @@ class PaginationController extends Controller
         $response = Http::get('https://newsapi.org/v2/everything?q=latest&apiKey=' . env('NEWS_API_KEY') . '&language=' . $request->lang);
         return response()->json($response->json());
     }
+
+    public function getCategoryByPage($category, $page) {
+        return view('news.category', [
+            'category' => $category,
+            'page' => $page,
+        ]);
+    }
 }
